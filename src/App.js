@@ -96,7 +96,7 @@ function App() {
     setOpen(false);
     let board = gameBoard(gridWidth, gridHeight);
     let newBoard = [...board];
-    _.remove([...newBoard], (n) => n == avatar);
+    _.remove([...newBoard], (n) => n === avatar);
     setSplits(_.sampleSize(newBoard, gridHeight));
     setPlayBoard(gameBoard(gridWidth, gridHeight));
   };
@@ -119,12 +119,12 @@ function App() {
   const boardRun = (e) => {
     e = e || window.event;
 
-    if (e.keyCode == "38") {
+    if (e.keyCode === 38) {
       // up arrow
       let upMove = document.getElementById(`${avatar}`);
       if (
-        upMove != undefined &&
-        upMove != null &&
+        upMove !== undefined &&
+        upMove !== null &&
         playBoard.includes(avatar) &&
         parseInt(avatar) > 20
       ) {
@@ -136,12 +136,12 @@ function App() {
         }
         setAvatar(moveUp);
       }
-    } else if (e.keyCode == "40") {
+    } else if (e.keyCode === 40) {
       // down arrow
       let downMove = document.getElementById(`${avatar}`);
       if (
-        downMove != undefined &&
-        downMove != null &&
+        downMove !== undefined &&
+        downMove !== null &&
         playBoard.includes(avatar) &&
         parseInt(avatar) < gridHeight * 10
       ) {
@@ -153,12 +153,12 @@ function App() {
         }
         setAvatar(moveDown);
       }
-    } else if (e.keyCode == "37") {
+    } else if (e.keyCode === 37) {
       // left arrow
       let leftMove = document.getElementById(`${avatar}`);
       if (
-        leftMove != undefined &&
-        leftMove != null &&
+        leftMove !== undefined &&
+        leftMove !== null &&
         playBoard.includes((parseInt(avatar) - 1).toString())
       ) {
         leftMove.classList.add("plain");
@@ -169,14 +169,14 @@ function App() {
         }
         setAvatar(moveLeft);
       }
-    } else if (e.keyCode == "39") {
+    } else if (e.keyCode === 39) {
       // right arrow
 
       let rightMove = document.getElementById(`${avatar}`);
 
       if (
-        rightMove != undefined &&
-        rightMove != null &&
+        rightMove !== undefined &&
+        rightMove !== null &&
         playBoard.includes(avatar) &&
         playBoard.includes((parseInt(avatar) + 1).toString())
       ) {
@@ -193,17 +193,17 @@ function App() {
   document.onkeydown = boardRun;
   useEffect(() => {
     let getAvatar = document.getElementById(`${avatar}`);
-    if (getAvatar != undefined) {
+    if (getAvatar !== undefined && getAvatar !== null) {
       if (getAvatar.classList.contains("food")) {
         getAvatar.classList.remove("food");
-        _.remove(splits, (n) => n == avatar);
+        _.remove(splits, (n) => n === avatar);
       }
       getAvatar.classList.remove("plain");
       getAvatar.classList.add("man");
     }
     setTimeout(() => {
       _.forEach(splits, (value) => {
-        if (value != avatar) {
+        if (value !== avatar) {
           let split = document.getElementById(`${value}`);
           split.classList.remove("plain");
           split.classList.add("food");
