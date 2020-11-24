@@ -46,8 +46,10 @@ function App() {
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [resp, setResp] = useState(" ");
-  const [avatar, setAvatar] = useState("11");
+  const [avatar, setAvatar] = useState("1");
   const [splits, setSplits] = useState([]);
+  const [playBoard, setPlayBoard] = useState([]);
+  const [moves, setMoves] = useState(0);
 
   const gameBoard = (w, h) => {
     let board = [];
@@ -80,20 +82,23 @@ function App() {
   };
 
   const handleOpen = () => {
-    setAvatar(avatarPosition(gridWidth, gridHeight));
-    setGridWidth(1);
-    setGridHeight(1);
+    setGridWidth(0);
+    setGridHeight(0);
     setSplits([]);
     setOpen(true);
+    setMoves(0);
   };
 
   const handleClose = () => {
-    setAvatar(avatarPosition(gridWidth, gridHeight));
+    if (gridWidth > 1 && gridHeight > 1) {
+      setAvatar(avatarPosition(gridWidth, gridHeight));
+    }
     setOpen(false);
     let board = gameBoard(gridWidth, gridHeight);
     let newBoard = [...board];
     _.remove([...newBoard], (n) => n == avatar);
     setSplits(_.sampleSize(newBoard, gridHeight));
+    setPlayBoard(gameBoard(gridWidth, gridHeight));
   };
 
   const handleHeightChange = (e) => {
@@ -111,45 +116,101 @@ function App() {
     }
   };
 
-  const play = () => {
-    if (avatar != "11") {
-      let getAvatar = document.getElementById(`${avatar}`);
-      getAvatar.classList.remove("plain");
-      getAvatar.classList.add("man");
-      setTimeout(() => {
-        _.forEach(splits, (value) => {
-          if (value != avatar) {
-            let split = document.getElementById(`${value}`);
-            split.classList.remove("plain");
-            split.classList.add("food");
-          }
-        });
-      }, 2000);
-      setTimeout(() => {
-        document.onkeydown = boardRun;
-      }, 1000);
-    }
-  };
   const boardRun = (e) => {
     e = e || window.event;
-    let move;
 
     if (e.keyCode == "38") {
       // up arrow
-      let newP = (parseInt(avatar) - 10).toString();
-      console.log(newP);
-      
+      let upMove = document.getElementById(`${avatar}`);
+      if (
+        upMove != undefined &&
+        upMove != null &&
+        playBoard.includes(avatar) &&
+        parseInt(avatar) > 20
+      ) {
+        upMove.classList.add("plain");
+        upMove.classList.remove("man");
+        let moveUp = (parseInt(avatar) - 10).toString();
+        if (splits.length > 1) {
+          setMoves(moves + 1);
+        }
+        setAvatar(moveUp);
+      }
     } else if (e.keyCode == "40") {
       // down arrow
-      console.log("down");
+      let downMove = document.getElementById(`${avatar}`);
+      if (
+        downMove != undefined &&
+        downMove != null &&
+        playBoard.includes(avatar) &&
+        parseInt(avatar) < gridHeight * 10
+      ) {
+        downMove.classList.add("plain");
+        downMove.classList.remove("man");
+        let moveDown = (parseInt(avatar) + 10).toString();
+        if (splits.length > 1) {
+          setMoves(moves + 1);
+        }
+        setAvatar(moveDown);
+      }
     } else if (e.keyCode == "37") {
       // left arrow
-      console.log("left");
+      let leftMove = document.getElementById(`${avatar}`);
+      if (
+        leftMove != undefined &&
+        leftMove != null &&
+        playBoard.includes((parseInt(avatar) - 1).toString())
+      ) {
+        leftMove.classList.add("plain");
+        leftMove.classList.remove("man");
+        let moveLeft = (parseInt(avatar) - 1).toString();
+        if (splits.length > 1) {
+          setMoves(moves + 1);
+        }
+        setAvatar(moveLeft);
+      }
     } else if (e.keyCode == "39") {
       // right arrow
-      console.log("right");
+
+      let rightMove = document.getElementById(`${avatar}`);
+
+      if (
+        rightMove != undefined &&
+        rightMove != null &&
+        playBoard.includes(avatar) &&
+        playBoard.includes((parseInt(avatar) + 1).toString())
+      ) {
+        rightMove.classList.add("plain");
+        rightMove.classList.remove("man");
+        let moveRight = (parseInt(avatar) + 1).toString();
+        if (splits.length > 1) {
+          setMoves(moves + 1);
+        }
+        setAvatar(moveRight);
+      }
     }
   };
+  document.onkeydown = boardRun;
+  useEffect(() => {
+    let getAvatar = document.getElementById(`${avatar}`);
+    if (getAvatar != undefined) {
+      if (getAvatar.classList.contains("food")) {
+        getAvatar.classList.remove("food");
+        _.remove(splits, (n) => n == avatar);
+      }
+      getAvatar.classList.remove("plain");
+      getAvatar.classList.add("man");
+    }
+    setTimeout(() => {
+      _.forEach(splits, (value) => {
+        if (value != avatar) {
+          let split = document.getElementById(`${value}`);
+          split.classList.remove("plain");
+          split.classList.add("food");
+        }
+      });
+    }, 1000);
+  }, [avatar, splits]);
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -182,14 +243,7 @@ function App() {
           >
             Input board height and width
           </Button>
-          <Button
-            type="button"
-            variant="contained"
-            color="primary"
-            onClick={play}
-          >
-            Play
-          </Button>
+
           <Modal
             open={open}
             onClose={handleClose}
@@ -198,6 +252,17 @@ function App() {
           >
             {body}
           </Modal>
+          <div>
+            {splits.length <= 1 ? (
+              <div>
+                <p>Game Over!!!!</p>
+                <p>Add other dimensions to play again</p>
+                <p>Yours Scores: {moves}</p>
+              </div>
+            ) : (
+              <p>Game in progress</p>
+            )}
+          </div>
         </div>
         {Array.from({ length: gridHeight }, (_, h) => h + 1).map((hValue) => (
           <Grid key={hValue} container spacing={1} direction="row">
@@ -205,7 +270,7 @@ function App() {
               <Grid key={value} item>
                 <Paper className={`cell`}>
                   <span id={`${hValue}${value}`} className={`plain`}>
-                    {`${hValue}${value}`}
+                    {/* {`${hValue}${value}`} */}
                   </span>
                 </Paper>
               </Grid>

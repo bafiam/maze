@@ -4,6 +4,7 @@
   width: 80%;
   border: 5px solid #7f92b6;
   padding: 10px;
+  min-height: 150px;
 }
 
 .cell {
@@ -23,9 +24,9 @@
 
 .man {
   display: block;
-  height: 80%;
-  width: 80%;
-  background: url(./icons/running-man.svg);
+  height: 90%;
+  width: 90%;
+  background: url(./icons/eating.svg);
   background-size: 100% 100%;
   margin: auto;
 }
