@@ -46,7 +46,7 @@ function App() {
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [resp, setResp] = useState(" ");
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState("11");
   const [splits, setSplits] = useState([]);
 
   const gameBoard = (w, h) => {
@@ -83,6 +83,7 @@ function App() {
     setAvatar(avatarPosition(gridWidth, gridHeight));
     setGridWidth(1);
     setGridHeight(1);
+    setSplits([]);
     setOpen(true);
   };
 
@@ -94,24 +95,60 @@ function App() {
     _.remove([...newBoard], (n) => n == avatar);
     setSplits(_.sampleSize(newBoard, gridHeight));
   };
- 
+
   const handleHeightChange = (e) => {
-    if (e.target.value >= 1 && e.target.value < 10) {
+    if (e.target.value > 1 && e.target.value < 10) {
       setGridHeight(e.target.value);
     } else {
       setResp(<p>Height should be between 1 and 9</p>);
     }
   };
   const handleWidthChange = (e) => {
-    if (e.target.value >= 1 && e.target.value < 10) {
+    if (e.target.value > 1 && e.target.value < 10) {
       setGridWidth(e.target.value);
     } else {
       setResp(<p>Width should be between 1 and 9</p>);
     }
   };
+
   const play = () => {
-    let getAvatar = document.getElementById(`${avatar}`);
-    console.log(getAvatar);
+    if (avatar != "11") {
+      let getAvatar = document.getElementById(`${avatar}`);
+      getAvatar.classList.remove("plain");
+      getAvatar.classList.add("man");
+      setTimeout(() => {
+        _.forEach(splits, (value) => {
+          if (value != avatar) {
+            let split = document.getElementById(`${value}`);
+            split.classList.remove("plain");
+            split.classList.add("food");
+          }
+        });
+      }, 2000);
+      setTimeout(() => {
+        document.onkeydown = boardRun;
+      }, 1000);
+    }
+  };
+  const boardRun = (e) => {
+    e = e || window.event;
+    let move;
+
+    if (e.keyCode == "38") {
+      // up arrow
+      let newP = (parseInt(avatar) - 10).toString();
+      console.log(newP);
+      
+    } else if (e.keyCode == "40") {
+      // down arrow
+      console.log("down");
+    } else if (e.keyCode == "37") {
+      // left arrow
+      console.log("left");
+    } else if (e.keyCode == "39") {
+      // right arrow
+      console.log("right");
+    }
   };
 
   const body = (
@@ -166,8 +203,10 @@ function App() {
           <Grid key={hValue} container spacing={1} direction="row">
             {Array.from({ length: gridWidth }, (_, i) => i + 1).map((value) => (
               <Grid key={value} item>
-                <Paper className={`cell`} id={`${hValue}${value}`}>
-                  <span className={`plain`}>{`${hValue}${value}`}</span>
+                <Paper className={`cell`}>
+                  <span id={`${hValue}${value}`} className={`plain`}>
+                    {`${hValue}${value}`}
+                  </span>
                 </Paper>
               </Grid>
             ))}

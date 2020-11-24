@@ -20,3 +20,21 @@
 .plain {
   display: none;
 }
+
+.man {
+  display: block;
+  height: 80%;
+  width: 80%;
+  background: url(./icons/running-man.svg);
+  background-size: 100% 100%;
+  margin: auto;
+}
+
+.food {
+  display: block;
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  background: url(./icons/hamburger.svg);
+  background-size: 100% 100%;
+}
