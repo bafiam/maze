@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+[![Contributor][contributor-shield]][contributor-url]
+[![Issues][issues-shield]][issues-url]
+<br />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <h1 align="center">Hamburger Maze </h1>
+  <p align="center">
+    React/Material-ui
+    <br />
+    <a href="https://github.com/bafiam/maze.git"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    ·
+    <a href="https://github.com/bafiam/maze/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/bafiam/maze/issues">Request Feature</a>
+  </p>
+</p>
 
-## Available Scripts
+<!-- TABLE OF CONTENTS -->
 
-In the project directory, you can run:
+## Table of Contents
 
-### `yarn start`
+- [About the Project](#about-the-project)
+- [Screenshots](#screenshots)
+- [Prerequisites Installations](#prerequisites-installations)
+- [Technology used](#technology-used)
+- [Usage/Getting Started](#how-to-Use)
+- [Live Version](#live-version)
+- [Roadmap](#roadmap)
+- [License](#license)
+- [Authors](#authors)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- ABOUT THE PROJECT -->
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## About The Project
 
-### `yarn test`
+This project is a Hamburger Maze App built with only React framework [using hooks]. It is a game that is intended for anyone who enjoys solving puzzles and gaming.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In this project, the complete feature of the app renders the following:
 
-### `yarn build`
+- Render the board in the number of squares given by the user
+- Place your player roughly in the center of the board.
+- Generate the Hamburger Sprites randomly on the board.
+- Count the steps it takes for the player to eat all the Hamburger sprites on the board.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Play
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To play use the arrow keys.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- <img src="./screenshot/keys.png" alt="screenshot3"/>
 
-### `yarn eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Home
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="./screenshot/entry.png" alt="screenshot1"/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Play Board
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<img src="./screenshot/entry2.png" alt="screenshot1"/>
 
-## Learn More
+## Prerequisites Installations
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<p>If you want a copy of this project running on your machine you have to install:</p>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- <a href="https://nodejs.org/en/">Node.js (v5. 2.0 or greater)</a>
+- <a href="https://git-scm.com/downloads">Git version control system</a>
 
-### Code Splitting
+## Technology used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Node.js
+- React
+- Material-ui
+- yarn
+- CSS
+- ES6
+- Lodash
 
-### Analyzing the Bundle Size
+## Usage/Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Once you have installed the required package shown on the [Prerequisites Installations](#required-installations), proceed with the following steps
 
-### Making a Progressive Web App
+Clone the Repository,
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```Shell
+your@pc:~$ git clone https://github.com/bafiam/maze.git
+```
 
-### Advanced Configuration
+Move into the cloned folder
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```Shell
+your@pc:~$ cd maze
+```
 
-### Deployment
+Get the dependencies needed for the app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```Shell
+your@pc:~$ yarn install
+```
 
-### `yarn build` fails to minify
+Start the server and use the app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```Shell
+your@pc:~$ yarn start
+```
+
+## Live Version
+
+This is the link to the live preview. Feel free to visit.<br>
+[Hamburger Maze](https://serene-mestorf-79f912.netlify.app/)<br>
+
+<!-- ROADMAP -->
+
+## Roadmap
+
+See the [open issues](https://github.com/bafiam/maze/issues) for a list of proposed features (and known issues).
+
+<!-- CONTACT -->
+
+## Authors
+
+Stephen Gumba
+
+- [GitHub profile](https://github.com/bafiam)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributor-shield]: https://img.shields.io/badge/Contributors-1-%2300ff00
+[contributor-url]: https://github.com/bafiam/maze/graphs/contributors
+[issues-shield]: https://img.shields.io/badge/issues-0-%2300ff00
+[issues-url]: https://github.com/bafiam/maze/issues/

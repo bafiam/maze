@@ -256,7 +256,7 @@ function App() {
             {splits.length <= 1 ? (
               <div>
                 <p>Game Over!!!!</p>
-                <p>Add other dimensions to play again</p>
+                <p>Add board dimensions to play</p>
                 <p>Yours Scores: {moves}</p>
               </div>
             ) : (
