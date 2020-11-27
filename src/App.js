@@ -253,6 +253,7 @@ function App() {
             {body}
           </Modal>
           <div>
+          <p>Use the arrow keys to move</p>
             {splits.length <= 1 ? (
               <div>
                 <p>Game Over!!!!</p>
