@@ -253,7 +253,7 @@ function App() {
             {body}
           </Modal>
           <div>
-            {splits.length < 1 ? (
+            {splits.length <= 0 ? (
               <div>
                 <p>Game Over!!!!</p>
                 <p>Add board dimensions to play</p>
