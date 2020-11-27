@@ -7,6 +7,8 @@
   <p align="center">
     React/Material-ui
     <br />
+     [Live Version](https://serene-mestorf-79f912.netlify.app/)
+    <br />
     <a href="https://github.com/bafiam/maze.git"><strong>Explore the docs »</strong></a>
     <br />
     <br />
@@ -22,6 +24,7 @@
 ## Table of Contents
 
 - [About the Project](#about-the-project)
+- [Play](#Play)
 - [Screenshots](#screenshots)
 - [Prerequisites Installations](#prerequisites-installations)
 - [Technology used](#technology-used)
